@@ -6,6 +6,12 @@ export const Container = styled.View`
   padding: 0 ${({ theme }) => theme.space.md};
 `;
 
+export const Header = styled.View`
+  height: ${({ theme }) => `${theme.screenDimensions.statusbar}px`};
+  background-color: ${({ theme }) => theme.colors.primary};
+  width: ${({ theme }) => `${theme.screenDimensions.width}px`};
+`;
+
 export const Title = styled.Text`
   margin-top: ${({ theme }) => theme.space.xlg};
   font-size: ${({ theme }) => theme.fontSize.title};

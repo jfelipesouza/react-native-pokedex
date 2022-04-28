@@ -7,6 +7,8 @@ import {
   Input,
   Icon,
   IndicatorContainer,
+  Trash,
+  TrashButton,
 } from "./styled";
 import axios from "axios";
 import { Loading } from "../loading";
@@ -30,6 +32,10 @@ export const Search: React.FC<SearchProps> = ({ onSearch, setIndicator }) => {
 
   const onDismiss = () => {
     Keyboard.dismiss();
+  };
+
+  const cleanInput = () => {
+    setPokemon("");
   };
 
   const handleSearchPokemon = async () => {
@@ -58,8 +64,9 @@ export const Search: React.FC<SearchProps> = ({ onSearch, setIndicator }) => {
     } else {
       const value = await handleSearchPokemon();
       if (value) {
-        onSearch(value);
+        cleanInput();
         setLoading(false);
+        onSearch(value);
       }
     }
   };
@@ -82,7 +89,18 @@ export const Search: React.FC<SearchProps> = ({ onSearch, setIndicator }) => {
         onEndEditing={handleClick}
       />
       <IndicatorContainer>
-        <Loading color={colors.primary} animating={loading} size={"xlg"} />
+        {loading === false && pokemon !== "" ? (
+          <TrashButton onPress={cleanInput}>
+            <Trash
+              height={icons.lg}
+              width={icons.lg}
+              fill={colors.gray}
+              fillRule={"evenodd"}
+            />
+          </TrashButton>
+        ) : (
+          <Loading color={colors.primary} animating={loading} size={"xlg"} />
+        )}
       </IndicatorContainer>
     </Container>
   );

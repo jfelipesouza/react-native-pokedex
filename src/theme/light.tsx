@@ -63,6 +63,7 @@ export const light = {
   },
   fontSize: {
     title: `${Percent(4.5)}px`,
+    subtitle: `${Percent(3)}px`,
     pokemonName: `${Percent(3)}px`,
     filterTitle: `${Percent(2.2)}px`,
     description: `${Percent(2.5)}px`,

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { StatusBar } from "react-native";
 import { ThemeProvider } from "styled-components";
+import { StatusBarComponent } from "./components/statusbar";
 import Routes from "./screens/routes";
 import { light } from "./theme";
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState(light);
-
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar
+      <StatusBarComponent
+        color={"transparent"}
+        visible={false}
         barStyle={"light-content"}
-        backgroundColor={theme.colors.types.water}
       />
       <Routes />
     </ThemeProvider>

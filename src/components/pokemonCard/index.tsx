@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import axios from "axios";
 import {
   Container,
@@ -10,8 +12,10 @@ import {
   PokemonTypes,
   RightContainer,
 } from "./styled";
-import { ActivityIndicator } from "react-native";
 import { PokemonCardType } from "../pokemonCardType";
+import { RootParamsStackRoutes } from "../../@types/routes/stack";
+import { IMAGE_URL } from "../../services/constants/pokemon";
+import { Loading } from "../loading";
 
 export type CardProps = {
   name: string;
@@ -34,9 +38,10 @@ export type PokemonObject = {
 };
 
 export const PokemonCard: React.FC<PokemonCardProps> = ({ data }) => {
-  const [pokemon, setPokemon] = useState({} as PokemonObject);
+  const navigation =
+    useNavigation<StackNavigationProp<RootParamsStackRoutes>>();
 
-  const imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/`;
+  const [pokemon, setPokemon] = useState({} as PokemonObject);
 
   const getPokemonInfo = async () => {
     try {
@@ -72,16 +77,30 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ data }) => {
     }
   };
 
+  const onNavigate = (route: string, params: {}) => {
+    navigation.navigate(route as never, params as never);
+  };
+
   useEffect(() => {
     getPokemonInfo();
   }, [data]);
 
-  if (typeof pokemon.name === "undefined") {
-    return <ActivityIndicator style={{ marginVertical: 30 }} />;
+  if (typeof pokemon.name === "undefined" || pokemon.types.length === 0) {
+    return (
+      <Loading
+        animating={true}
+        color={"#008080"}
+        size="md"
+        style={{ marginVertical: 20 }}
+      />
+    );
   }
 
   return (
-    <Container type={pokemon.types[0].type.name}>
+    <Container
+      type={pokemon.types[0].type.name}
+      onPress={() => onNavigate("pokemon", pokemon)}
+    >
       <LeftContainer>
         <PokemonID>{pokemonID()}</PokemonID>
         <PokemonName>{pokemon.name}</PokemonName>
@@ -96,7 +115,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ data }) => {
       </LeftContainer>
       <RightContainer>
         <PokemonBackground />
-        <PokemonImage source={{ uri: imageURL + `${pokemon.id}` + ".png" }} />
+        <PokemonImage source={{ uri: IMAGE_URL + `${pokemon.id}` + ".png" }} />
       </RightContainer>
     </Container>
   );

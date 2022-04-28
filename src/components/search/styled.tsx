@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { RFPercentage as Percent } from "react-native-responsive-fontsize";
 import SearchIcon from "../../assets/svg/search.svg";
+import TrashIcon from "../../assets/svg/trash.svg";
 
 export const Container = styled.View`
   position: relative;
@@ -23,12 +24,21 @@ export const IconButton = styled.TouchableOpacity`
 `;
 
 export const Icon = styled(SearchIcon)``;
+export const Trash = styled(TrashIcon)``;
+
+export const TrashButton = styled.TouchableOpacity`
+  background-color: ${({ theme }) => theme.colors.inputBackgroundPressed};
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => theme.space.sm};
+  border-radius: ${({ theme }) => theme.space.xlg};
+`;
 
 export const Input = styled.TextInput`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.inputBackground};
   padding-left: ${`${Percent(5) + 10}px`};
-  padding-right: 10px;
+  padding-right: ${`${Percent(6.2) + 10}px`};
   border-radius: ${({ theme }) => theme.border.md};
   font-size: ${({ theme }) => theme.fontSize.filterTitle};
   elevation: 3;
@@ -38,4 +48,5 @@ export const Input = styled.TextInput`
 export const IndicatorContainer = styled.View`
   position: absolute;
   right: 10px;
+  z-index: 10;
 `;

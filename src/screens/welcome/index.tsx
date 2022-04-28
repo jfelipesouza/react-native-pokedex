@@ -15,7 +15,7 @@ import {
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootParamsStackRoutes } from "../../@types/routes/stack";
 
-const Pokemon = require("../../assets/animation/pokemon.json");
+import Pokemon from "../../assets/animation/pokemon.json";
 
 const Welcome: React.FC = () => {
   const { replace } =
@@ -49,8 +49,8 @@ const Welcome: React.FC = () => {
           duration={1500}
           easing={"linear"}
         >
-          <Title>Bem vindo!</Title>
-          <Subtitle>Capture todos os pokemons</Subtitle>
+          <Title>Welcome!</Title>
+          <Subtitle>Catch all pokemons! </Subtitle>
         </Animatable.View>
       </Content>
 

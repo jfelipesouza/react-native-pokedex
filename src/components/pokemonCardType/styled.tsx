@@ -12,6 +12,7 @@ export const Container = styled.View<ContainerProps>`
   border-radius: ${({ theme }) => theme.space.sm};
   margin-right: ${({ theme }) => theme.space.sm};
   flex-direction: row-reverse;
+  left: ${({ theme }) => -theme.icons.sm}px;
 `;
 
 export const PokemonType = styled.Text`

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Search, SeachPokemon } from "../../components/search";
-import { Container, ListPokemon, SubTitle, Title } from "./styled";
+import { Container, Header, ListPokemon, SubTitle, Title } from "./styled";
 import { ActivityIndicator } from "react-native";
 import { BASE_URL_POKEMON } from "../../services/constants/pokemon";
 import { CardProps, PokemonCard } from "../../components/pokemonCard";
 import { useTheme } from "styled-components";
 import { Loading } from "../../components/loading";
+import { StatusBarComponent } from "../../components/statusbar";
 
 const Home: React.FC = () => {
   const { icons, colors } = useTheme();
@@ -48,37 +49,40 @@ const Home: React.FC = () => {
     loadScreen();
   }, [data.length === 0]);
 
-  if (load === true && data.length === 0) {
-    return <Loading animating={load} size={20} color={colors.primary} />;
-  }
-
   return (
-    <Container>
-      <Title>Pokédex</Title>
-      <SubTitle>
-        Search for Pokémon by name or using the National Pokédex number.
-      </SubTitle>
+    <>
+      <Header />
+      <Container>
+        <Title>Pokédex</Title>
+        <SubTitle>
+          Search for Pokémon by name or using the National Pokédex number.
+        </SubTitle>
 
-      <Search onSearch={setData} setIndicator={setIndicator} />
+        <Search onSearch={setData} setIndicator={setIndicator} />
 
-      <ListPokemon
-        data={data}
-        renderItem={({ item }) => <PokemonCard data={item as CardProps} />}
-        keyExtractor={(item, index) => String(index)}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingVertical: 10 }}
-        onEndReached={infinityScroll}
-        onEndReachedThreshold={2}
-        ListFooterComponent={
-          <ActivityIndicator
-            size={icons.xxlg}
-            color={colors.primary}
-            animating={indicator}
-            style={{ display: indicator ? "flex" : "none" }}
+        {load === true && data.length === 0 ? (
+          <Loading animating={load} size={20} color={colors.primary} />
+        ) : (
+          <ListPokemon
+            data={data}
+            renderItem={({ item }) => <PokemonCard data={item as CardProps} />}
+            keyExtractor={(item, index) => String(index)}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingVertical: 10 }}
+            onEndReached={infinityScroll}
+            onEndReachedThreshold={3}
+            ListFooterComponent={
+              <ActivityIndicator
+                size={icons.xxlg}
+                color={colors.primary}
+                animating={indicator}
+                style={{ display: indicator ? "flex" : "none" }}
+              />
+            }
           />
-        }
-      />
-    </Container>
+        )}
+      </Container>
+    </>
   );
 };
 
