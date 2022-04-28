@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Search, SeachPokemon } from "../../components/search";
 import { Container, Header, ListPokemon, SubTitle, Title } from "./styled";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, ListRenderItemInfo } from "react-native";
 import { BASE_URL_POKEMON } from "../../services/constants/pokemon";
 import { CardProps, PokemonCard } from "../../components/pokemonCard";
 import { useTheme } from "styled-components";
 import { Loading } from "../../components/loading";
-import { StatusBarComponent } from "../../components/statusbar";
+
+const Card: React.FC<ListRenderItemInfo<CardProps>> = ({ item }) => (
+  <PokemonCard data={item} />
+);
 
 const Home: React.FC = () => {
   const { icons, colors } = useTheme();
@@ -43,7 +46,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const loadScreen = async (): Promise<void> => {
       if (data.length === 0) {
-        await getListPokemon(28);
+        await getListPokemon(8);
       }
     };
     loadScreen();
@@ -65,12 +68,15 @@ const Home: React.FC = () => {
         ) : (
           <ListPokemon
             data={data}
-            renderItem={({ item }) => <PokemonCard data={item as CardProps} />}
-            keyExtractor={(item, index) => String(index)}
+            renderItem={Card as any}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingVertical: 10 }}
             onEndReached={infinityScroll}
             onEndReachedThreshold={3}
+            removeClippedSubviews={true}
+            maxToRenderPerBatch={18}
+            updateCellsBatchingPeriod={50}
+            initialNumToRender={10}
             ListFooterComponent={
               <ActivityIndicator
                 size={icons.xxlg}

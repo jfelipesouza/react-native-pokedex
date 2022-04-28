@@ -77,8 +77,8 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ data }) => {
     }
   };
 
-  const onNavigate = (route: string, params: {}) => {
-    navigation.navigate(route as never, params as never);
+  const onNavigate = () => {
+    navigation.navigate("pokemon", pokemon);
   };
 
   useEffect(() => {
@@ -97,10 +97,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ data }) => {
   }
 
   return (
-    <Container
-      type={pokemon.types[0].type.name}
-      onPress={() => onNavigate("pokemon", pokemon)}
-    >
+    <Container type={pokemon.types[0].type.name} onPress={onNavigate}>
       <LeftContainer>
         <PokemonID>{pokemonID()}</PokemonID>
         <PokemonName>{pokemon.name}</PokemonName>

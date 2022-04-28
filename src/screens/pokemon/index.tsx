@@ -181,7 +181,6 @@ export const PokemonDetails: React.FC = () => {
                 renderItem={({ item, index }) => (
                   <PokemonCardType data={item as PokemonTypesObject} />
                 )}
-                keyExtractor={(item, index) => String(index)}
               />
             </HeaderPokemonDescriptionContainer>
           </HeaderContent>

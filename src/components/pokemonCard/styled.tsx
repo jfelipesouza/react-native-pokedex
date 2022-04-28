@@ -58,13 +58,6 @@ export const PokemonID = styled.Text`
   color: ${({ theme }) => theme.colors.modal};
 `;
 
-export const Inline = styled.View`
-  flex-direction: row;
-  width: 90%;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const PokemonTypes = styled.FlatList`
   margin-top: ${({ theme }) => theme.space.sm};
 `;
