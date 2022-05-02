@@ -67,7 +67,7 @@ Este projeto ainda está em sua fase inicial e para seguir seu desenvolvimento s
 - Montagem de equipes;
 - Melhorias no filtro;
 - Buscador de evoluções;
-- Habitates;
+- Habitats;
 - Lista de habilidades que um pokemon pode adquirir e o niviel;
 - Itens de cada geração do jogo;
 - Suporte a multi-liguagens;
