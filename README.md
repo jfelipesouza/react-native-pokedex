@@ -57,6 +57,7 @@ Ou baixe o <a href='https://github.com/jfelipesouza/react-native-task-manager/bl
 
 
 <div id='next'>
+
 ## Próximos Passos
 
 Este projeto ainda está em sua fase inicial e para seguir seu desenvolvimento será necessario implementar novos recursos
