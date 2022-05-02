@@ -39,7 +39,7 @@ yarn android ou npm react-native run-android
 #IOS
 yarn ios ou npm react-native run-ios
 ```
-Ou baixe o <a href='https://github.com/jfelipesouza/react-native-task-manager/blob/main/example/apk/app-arm64-v8a-release.apk?raw=true'>apk</a> de exemplo e execute em seu dispositivo fisico ou emulador
+Ou baixe o <a href='https://github.com/jfelipesouza/react-native-pokedex/blob/main/example/app-universal-release.apk?raw=true'>apk</a> de exemplo e execute em seu dispositivo fisico ou emulador
 
 
 </div>
