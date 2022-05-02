@@ -78,8 +78,8 @@ const Home: React.FC = () => {
             updateCellsBatchingPeriod={50}
             initialNumToRender={10}
             ListFooterComponent={
-              <ActivityIndicator
-                size={icons.xxlg}
+              <Loading
+                size={icons.sm}
                 color={colors.primary}
                 animating={indicator}
                 style={{ display: indicator ? "flex" : "none" }}

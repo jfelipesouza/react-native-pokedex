@@ -14,15 +14,14 @@ import {
 } from "./styled";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootParamsStackRoutes } from "../../@types/routes/stack";
-
 import Pokemon from "../../assets/animation/pokemon.json";
 
 const Welcome: React.FC = () => {
   const { replace } =
     useNavigation<StackNavigationProp<RootParamsStackRoutes>>();
 
-  const handleNavigationScreen = (route: string, params?: {}) => {
-    replace(route as never, params as never);
+  const handleNavigationScreen = (params?: {}) => {
+    replace("home" as never, params as never);
   };
 
   return (
@@ -60,8 +59,8 @@ const Welcome: React.FC = () => {
         duration={1500}
         easing={"linear"}
       >
-        <Button onPress={() => handleNavigationScreen("home")}>
-          <Subtitle>Começar</Subtitle>
+        <Button onPress={handleNavigationScreen}>
+          <Subtitle>To Start</Subtitle>
         </Button>
       </Footer>
     </Container>

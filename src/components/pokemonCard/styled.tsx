@@ -13,7 +13,6 @@ export const Container = styled.TouchableOpacity<CardContainerProps>`
   margin: ${({ theme }) => theme.space.md} 0;
   border-radius: ${({ theme }) => theme.space.xlg};
   flex-direction: row;
-  elevation: 3;
 `;
 
 export const LeftContainer = styled.View`
